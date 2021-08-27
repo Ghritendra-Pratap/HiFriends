@@ -10,10 +10,12 @@ function Message({user, message}) {
     return (
         <Container>
             <TypeOfMessage>
+                
                 {message.messages}
             <Timestamp>
             {message.timestamp? moment(message.timestamp).format('LT') : '...'}
             </Timestamp> 
+            
             </TypeOfMessage>
             
         </Container>
@@ -38,6 +40,11 @@ text-align: right;
 const Timestamp = styled.p`
 font-size: 10px;
 color: grey;
+font-size: 9px;
+position: absolute;
+bottom: 0;
+text-align: right;
+right: 0.5;
 `;
 
 const Sender = styled(MessageElement)`
