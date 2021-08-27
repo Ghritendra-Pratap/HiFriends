@@ -10,6 +10,7 @@ import { useAuthState } from 'react-firebase-hooks/auth'
 import { auth, db } from '../firebase'
 import {useCollection} from "react-firebase-hooks/firestore"
 import Chat from './Chat'
+import MainPage from './MainPage'
 
 function Sidebar() {
 
@@ -45,6 +46,7 @@ const chatAlreadyExists = (recipientEmail) =>
 
     return (
         <Container>
+            <Side>
             <Header>
                 <UserAvatar src={user.photoURL} onClick={()=> auth.signOut()}/>
                 <IconContainer>
@@ -66,9 +68,10 @@ const chatAlreadyExists = (recipientEmail) =>
             
             {/* Lists of Chats*/}
             {chatsSnapshot?.docs.map((chat) => <Chat key={chat.id} id={chat.id} users={chat.data().users}/>)}
-            
-
-          
+            </Side>
+            <Main>
+                <MainPage/>
+            </Main>          
         </Container>
     );
 }
@@ -76,13 +79,19 @@ const chatAlreadyExists = (recipientEmail) =>
 export default Sidebar
 
 const Container = styled.div`
-flex:0.45;
+display: flex;
 border-right: 1px solid whitesmoke;
 height: 100vh;
+
+
+
+`;
+
+const Side = styled.div`
+flex: 0.45;
 min-width: 300px;
 max-width: 350px;
 overflow-y:scroll;
-
 ::-webkit-scrollbar{
 display: none;
 }
@@ -90,6 +99,13 @@ display: none;
 -ms-overflow-style:none;
 scrollbar-width: none;
 `;
+
+const Main = styled.div`
+flex: 8;
+background-color: lightgray;
+
+`;
+
 
 const Search = styled.div`
     display: flex;

@@ -15,6 +15,8 @@ import getRecipientId from "../utils/getRecipientId";
 import TimeAgo from "timeago-react";
 import { useRef } from "react";
 
+
+
 function ChatScreen({chat, messages}) {
 
     const [user] = useAuthState(auth);
@@ -59,33 +61,35 @@ function ChatScreen({chat, messages}) {
     }
     }
     
-const scrollToBottom=()=>{
-    endOfMessagesRef.current.scrollIntoView(
-        {
-            behavior: "smooth",
-            block: "start",
-        });
-}
+        const scrollToBottom=()=>{
+            endOfMessagesRef.current.scrollIntoView(
+                {
+                    behavior: "smooth",
+                    block: "start",
+                });
+        }
 
-const sendMessage = (e) => {
-    e.preventDefault();
+        const sendMessage = (e) => {
+            e.preventDefault();
 
-    //update Last seen..
-    db.collection("users").doc(user.uid).set({
-        lastSeen: firebase.firestore.FieldValue.serverTimestamp()
-    },
-    {merge: true});
+            //update Last seen..
+            db.collection("users").doc(user.uid).set({
+                lastSeen: firebase.firestore.FieldValue.serverTimestamp()
+            },
+            {merge: true});
 
-    db.collection('chats').doc(router.query.id).collection('messages').add({
-        timestamp: firebase.firestore.FieldValue.serverTimestamp(),
-        messages:input,
-        user: user.email,
-        photoURL: user.photoURL,
-    });
+            db.collection('chats').doc(router.query.id).collection('messages').add({
+                timestamp: firebase.firestore.FieldValue.serverTimestamp(),
+                messages:input,
+                user: user.email,
+                photoURL: user.photoURL,
+            });
 
-    setInput("");
-    scrollToBottom();
-};
+            setInput("");
+            scrollToBottom();
+        };
+
+    
 
 const recipient = recipientSnapshot?.docs?.[0]?.data();
 const recipientId = getRecipientId(chat.users,user);
@@ -124,7 +128,8 @@ const recipientId = getRecipientId(chat.users,user);
             </MessageContainer>
 
             <InputContainer>
-                <InsertEmotionIcon/>
+                <InsertEmotionIcon  />
+                
                 <Input value={input} onChange={e => setInput(e.target.value)}/>
                 <button hidden disabled = {!input} type="submit" onClick={sendMessage}>Send Message</button>
                 

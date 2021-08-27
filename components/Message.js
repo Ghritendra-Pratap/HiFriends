@@ -38,17 +38,14 @@ text-align: right;
 const Timestamp = styled.p`
 font-size: 10px;
 color: grey;
-
 `;
 
 const Sender = styled(MessageElement)`
 background-color: #dcf8c6;
 margin-left: auto;
-
 `;
 
 const Reciever = styled(MessageElement)`
 background-color: whitesmoke;
 text-align: left;
-
 `;
