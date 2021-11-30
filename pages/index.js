@@ -7,7 +7,7 @@ export default function Home() {
   return (
     <div >
       <Head>
-        <title>Whatsapp Clone</title>
+        <title>Hi-fi</title>
         
         <link rel="icon" href="/favicon.ico" />
       </Head>
