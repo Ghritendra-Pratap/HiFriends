@@ -14,7 +14,7 @@ function Login () {
             </Head>
             
             <LoginContainer>
-                <Logo src="/assets/whatsapp.png" />
+                <Logo src="/assets/logo.jpeg" />
                 <Button onClick={signIn} variant="outlined"> Sign in with Gmail</Button>
             </LoginContainer>
         </Container>
